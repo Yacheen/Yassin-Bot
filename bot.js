@@ -4,7 +4,7 @@ const client = new Client({
     intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_TYPING"],
 });
 const PREFIX = "!";
-const cooldown = 60; // 60 minutes
+const cooldown = 60 * 6; // 60 minutes
 let cooldownString = "mitsuTalkedRecently";
 let recentlyRan = []; // allows mitsu to talk every hour
 let kyary;
@@ -86,7 +86,7 @@ client.on("ready", (c) => {
     });
 });
 
-client.on("messageCreate", (messageSent) => {
+client.once("messageCreate", (messageSent) => {
     let alreadyRepliedAboutSadness = false;
     let alreadyRepliedAboutYassin = false;
     if (messageSent.author.bot) return;
@@ -110,21 +110,22 @@ client.on("messageCreate", (messageSent) => {
     });
 });
 
-/*
 client.on("typingStart", (channel, user, data) => {
-    if (channel.user.id === "184477182800822272") {
-        if (recentlyRan.includes(cooldownString)) {
-            return;
-        } else {
-            channel.channel.send(`Mitsu, I hope you got permission from <@${kyary}> to speak`);
-            recentlyRan.push(cooldownString);
+    if (channel.user.bot) return;
+    else {
+        if (channel.user.id === "109839660808687616") {
+            if (recentlyRan.includes(cooldownString)) {
+                return;
+            } else {
+                channel.channel.send(`Mitsu, I hope you got permission from <@${kyary}> to speak`);
+                recentlyRan.push(cooldownString);
 
-            setTimeout(() => {
-                recentlyRan = recentlyRan.filter((string) => {
-                    string !== cooldownString;
-                });
-            }, 1000 * cooldown);
+                setTimeout(() => {
+                    recentlyRan = recentlyRan.filter((string) => {
+                        string !== cooldownString;
+                    });
+                }, 1000 * cooldown);
+            }
         }
     }
 });
-*/
