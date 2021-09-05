@@ -96,7 +96,7 @@ client.once("messageCreate", (messageSent) => {
     }
 
     if (mentionedYassin.includes(messageSent.content.toLowerCase())) {
-        messageSent.channel.send("I love league of legends. (help)");
+        messageSent.channel.send("I love league of legends. ||help||");
     }
 });
 
