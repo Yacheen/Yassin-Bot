@@ -94,7 +94,7 @@ client.on("messageCreate", (messageSent) => {
     isSad.map((sadTerm) => {
         if (messageSent.content.toLowerCase().includes(sadTerm) && alreadyRepliedAboutSadness == false) {
             alreadyRepliedAboutSadness = true;
-            messageSent.reply(`sadge`);
+            messageSent.reply(`Sadge.`);
         } else {
             return;
         }
@@ -103,7 +103,7 @@ client.on("messageCreate", (messageSent) => {
     mentionedYassin.map((yassinTerm) => {
         if (messageSent.content.toLowerCase().includes(yassinTerm) && alreadyRepliedAboutYassin == false) {
             alreadyRepliedAboutYassin = true;
-            messageSent.reply("I will let Yassin know about this.");
+            messageSent.channel.send("I will let Yassin know about this.");
         } else {
             return;
         }
