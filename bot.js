@@ -91,23 +91,13 @@ client.once("messageCreate", (messageSent) => {
     let alreadyRepliedAboutYassin = false;
     if (messageSent.author.bot) return;
 
-    isSad.map((sadTerm) => {
-        if (messageSent.content.toLowerCase().includes(sadTerm) && alreadyRepliedAboutSadness == false) {
-            alreadyRepliedAboutSadness = true;
-            messageSent.reply(`Sadge.`);
-        } else {
-            return;
-        }
-    });
+    if (isSad.includes(messageSent.content.toLowerCase())) {
+        messageSent.reply("Sadge.");
+    }
 
-    mentionedYassin.map((yassinTerm) => {
-        if (messageSent.content.toLowerCase().includes(yassinTerm) && alreadyRepliedAboutYassin == false) {
-            alreadyRepliedAboutYassin = true;
-            messageSent.channel.send("I will let Yassin know about this.");
-        } else {
-            return;
-        }
-    });
+    if (mentionedYassin.includes(messageSent.content.toLowerCase())) {
+        messageSent.channel.send("I love league of legends. (help)");
+    }
 });
 
 client.on("typingStart", (channel, user, data) => {
