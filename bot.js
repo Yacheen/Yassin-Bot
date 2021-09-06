@@ -6,6 +6,8 @@ const client = new Client({
 const PREFIX = "!";
 const cooldown = 60 * 6; // 60 minutes
 let cooldownString = "mitsuTalkedRecently";
+let yassinCooldownString = 'yassinTalkedRecently';
+let sadCooldownString = 'sadRecently';
 let recentlyRan = []; // allows mitsu to talk every hour
 let kyary;
 client.users.fetch("237613696489226241").then((kyarydata) => {
@@ -86,17 +88,36 @@ client.on("ready", (c) => {
     });
 });
 
-client.once("messageCreate", (messageSent) => {
-    let alreadyRepliedAboutSadness = false;
-    let alreadyRepliedAboutYassin = false;
+client.on("messageCreate", (messageSent) => {
+    
     if (messageSent.author.bot) return;
-
-    if (isSad.includes(messageSent.content.toLowerCase())) {
-        messageSent.reply("Sadge.");
+    else if (isSad.includes(messageSent.content.toLowerCase())) {
+        if(recentlyRan.includes(sadCooldownString)) return;
+        else {
+            messageSent.reply("Sadge.");
+            recentlyRan.push(sadCooldownString);
+            setTimeout(() => {
+                recentlyRan = recentlyRan.filter((string) => {
+                    string !== sadCooldownString;
+                });
+            }, 1000 * cooldown);
+        }
+        
     }
 
-    if (mentionedYassin.includes(messageSent.content.toLowerCase())) {
-        messageSent.channel.send("I love league of legends. ||help||");
+    else (mentionedYassin.includes(messageSent.content.toLowerCase())) {
+        if(recentlyRan.includes(yassinCooldownString)) return;
+        else {
+            messageSent.channel.send("I love league of legends. ||help||");
+            recentlyRan.push(yassinCooldownString);
+
+            setTimeout(() => {
+                recentlyRan = recentlyRan.filter((string) => {
+                    string !== yassinCooldownString;
+                });
+            }, 1000 * cooldown);
+        }
+        
     }
 });
 
