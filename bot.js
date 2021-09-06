@@ -4,18 +4,17 @@ const client = new Client({
     intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_TYPING"],
 });
 const PREFIX = "!";
-const cooldown = 60 * 2; // 60 minutes
+const cooldown = 600 * 2; // 60 minutes
 let cooldownString = "mitsuTalkedRecently";
 let yassinCooldownString = "yassinTalkedRecently";
 let sadCooldownString = "sadRecently";
 let recentlyRan = []; // allows mitsu to talk every hour
-/*
+
 let kyary;
 client.users.fetch("237613696489226241").then((kyarydata) => {
     kyary = kyarydata.id;
     return kyary;
 });
-*/
 
 const mentionedYassin = ["yassin", "yasin", "y4ssin", "frostfire", "league", "of legends"];
 
@@ -126,7 +125,7 @@ client.on("typingStart", (channel, user, data) => {
                 return;
             } else {
                 channel.channel.send(
-                    `${channel.user.username}, I hope you got permission from kyary to speak`
+                    `${channel.user.username}, I hope you got permission from <@${kyary}> to speak`
                 );
                 recentlyRan.push(cooldownString);
 
