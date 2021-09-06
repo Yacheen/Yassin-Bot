@@ -4,7 +4,7 @@ const client = new Client({
     intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_TYPING"],
 });
 const PREFIX = "!";
-const cooldown = 600 * 2; // 60 minutes
+const cooldown = 600 * 20; // 60 minutes
 let cooldownString = "mitsuTalkedRecently";
 let yassinCooldownString = "yassinTalkedRecently";
 let sadCooldownString = "sadRecently";
