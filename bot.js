@@ -12,7 +12,7 @@ let recentlyRan = []; // allows mitsu to talk every hour
 
 let kyary;
 client.users.fetch("237613696489226241").then((kyarydata) => {
-    kyary = kyarydata.id;
+    kyary = kyarydata.username;
     return kyary;
 });
 
